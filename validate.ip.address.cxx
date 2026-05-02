@@ -72,13 +72,14 @@ const static unsigned char numset[] = {
 unsigned char delimitersSeen = 0; // Not thread safe, not intended to be.
 
 // Yes, I am abusing inlining and noexcept keywords :)
-// statics are used purely for callability within benchmarks
+// statics in classes are used purely for callability within benchmarks
+// in functions for visibility restriction
 
-static inline bool digit(const char &c) {
+static inline bool digit(const char &c) noexcept {
     return c >= '0' && c <= '9';
 }
 
-static inline bool hex(const char &c) {
+static inline bool hex(const char &c) noexcept {
     return digit(c) || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F');
 }
 
